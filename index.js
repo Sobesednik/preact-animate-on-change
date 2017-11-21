@@ -74,6 +74,7 @@ class AnimateOnChange extends Component {
     }
     // send separate, animation state change will not render
     this.setState({ clearAnimationClass: true })  // renders
+    this.forceUpdate();
     this.setState({ animating: false, clearAnimationClass: false })
   }
 

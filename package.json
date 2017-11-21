@@ -1,5 +1,5 @@
 {
-  "name": "react-animate-on-change",
+  "name": "preact-animate-on-change",
   "version": "1.0.1",
   "description": "Animate your components on state change",
   "main": "dist/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arve0/react-animate-on-change.git"
+    "url": "git+https://github.com/Sobesednik/preact-animate-on-change.git"
   },
   "keywords": [
     "react-component",

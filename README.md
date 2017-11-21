@@ -1,4 +1,6 @@
-# react-animate-on-change
+# preact-animate-on-change
+
+> THIS IS A FORK of [`react-animate-on-change`][1] WHICH WORKS WITH PREACT.
 
 [![](https://saucelabs.com/browser-matrix/arve0.svg)](https://saucelabs.com/u/arve0)
 
@@ -58,3 +60,5 @@ Add tests in [test.js](test.js) and hack away.
 
 ## Known issues
 - The browser must support CSS3 animations, doh.
+
+[1]: https://github.com/arve0/react-animate-on-change
