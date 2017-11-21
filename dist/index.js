@@ -27,7 +27,6 @@ var events = {
   end: ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'oanimationend', 'MSAnimationEnd'],
   startRemoved: [],
   endRemoved: []
-};
 
   /**
    * # AnimateOnChange component.
@@ -39,7 +38,7 @@ var events = {
    * @prop {string} animationClassName - Class added when `animate == true`.
    * @prop {bool} animate - Wheter to animate component.
    */
-
+};
 var AnimateOnChange = function (_Component) {
   _inherits(AnimateOnChange, _Component);
 
