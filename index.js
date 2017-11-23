@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { h, Component } from 'preact'
 
 const events = {
   start: ['animationstart', 'webkitAnimationStart', 'mozAnimationStart', 'oanimationstart', 'MSAnimationStart'],
@@ -18,22 +17,27 @@ const events = {
  * @prop {string} animationClassName - Class added when `animate == true`.
  * @prop {bool} animate - Wheter to animate component.
  */
-class AnimateOnChange extends Component {
+export default class AnimateOnChange extends Component {
   constructor (props) {
     super(props)
     this.state = { animating: false, clearAnimationClass: false }
+    this.rootRef = this.rootRef.bind(this)
     this.animationStart = this.animationStart.bind(this)
     this.animationEnd = this.animationEnd.bind(this)
   }
 
+  rootRef (ref) {
+    this.root = ref;
+  }
+
   componentDidMount () {
-    const elm = this.refs.root
+    const elm = this.root
     this.addEventListener('start', elm, this.animationStart)
     this.addEventListener('end', elm, this.animationEnd)
   }
 
   componentWillUnmount () {
-    const elm = this.refs.root
+    const elm = this.root
     this.removeEventListeners('start', elm, this.animationStart)
     this.removeEventListeners('end', elm, this.animationEnd)
   }
@@ -62,7 +66,7 @@ class AnimateOnChange extends Component {
   animationStart (e) {
     if (events['start'].length > 1) {
       this.updateEvents('start', e.type)
-      this.removeEventListeners('startRemoved', this.refs.root, this.animationStart)
+      this.removeEventListeners('startRemoved', this.root, this.animationStart)
     }
     this.setState({ animating: true, clearAnimationClass: false })
   }
@@ -70,12 +74,12 @@ class AnimateOnChange extends Component {
   animationEnd (e) {
     if (events['end'].length > 1) {
       this.updateEvents('end', e.type)
-      this.removeEventListeners('endRemoved', this.refs.root, this.animationStart)
+      this.removeEventListeners('endRemoved', this.root, this.animationStart)
     }
     // send separate, animation state change will not render
-    this.setState({ clearAnimationClass: true })  // renders
-    this.forceUpdate();
-    this.setState({ animating: false, clearAnimationClass: false })
+    this.setState({ clearAnimationClass: true }, () => {
+      this.setState({ animating: false, clearAnimationClass: false })
+    })
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -86,24 +90,11 @@ class AnimateOnChange extends Component {
     return true
   }
 
-  render () {
-    let className = this.props.baseClassName
-
-    if (this.props.animate && !this.state.clearAnimationClass) {
-      className += ` ${this.props.animationClassName}`
+  render ({ baseClassName: className, animate, animationClassName, children }, { clearAnimationClass }) {
+    if (animate && !clearAnimationClass) {
+      className += ` ${animationClassName}`
     }
 
-    return <span ref='root' className={className}>
-      {this.props.children}
-    </span>
+    return <span ref={this.rootRef} className={className}>{children}</span>
   }
 }
-
-AnimateOnChange.propTypes = {
-  children: PropTypes.any.isRequired,
-  animate: PropTypes.bool.isRequired,
-  baseClassName: PropTypes.string.isRequired,
-  animationClassName: PropTypes.string.isRequired
-}
-
-export default AnimateOnChange

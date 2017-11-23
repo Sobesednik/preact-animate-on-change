@@ -7,11 +7,7 @@ if (typeof global.requestAnimationFrame !== 'function') {
   };
 }
 
-import 'core-js/es6/map';
-import 'core-js/es6/set';
-
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import { h, Component, render } from 'preact'
 import AnimateOnChange from './index.js'
 
 const ANIMATION_TIME = 100
@@ -61,7 +57,7 @@ class PushNewProps extends Component {
   }
 }
 
-describe('react-animate-on-change', function () {
+describe('preact-animate-on-change', function () {
   let root
   beforeEach(function () {
     if (root) {
