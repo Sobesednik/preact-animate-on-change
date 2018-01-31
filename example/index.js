@@ -1,7 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { h, render } from 'preact'
 import { createStore } from 'redux'
-import { connect, Provider } from 'react-redux'
+import { connect, Provider } from 'preact-redux'
 import AnimateOnChange from '../index.js'
 import './style.css'
 
@@ -41,5 +40,7 @@ const AppComponent = ({diff, score}) =>
 
 const App = connect(s => s)(AppComponent)
 
-ReactDOM.render(<Provider store={store}><App/></Provider>,
-                document.getElementById('root'))
+render(
+  <Provider store={store}><App/></Provider>,
+  document.getElementById('root')
+)
