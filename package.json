@@ -5,12 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel index.js -d dist",
-    "example": "concurrent \"ecstatic ./example\" \"npm run ewebpack\"",
-    "ewebpack": "webpack --config example/webpack.config.js --watch",
     "postversion": "npm run build && git add dist && git commit --amend --no-edit",
     "postpublish": "git push && git push --tags",
-    "start": "karma start",
-    "test": "karma start karma.conf-ci.js"
+    "test": "karma start karma.conf-ci.js",
+    "watch": "webpack-dev-server --config example/dev.js"
   },
   "repository": {
     "type": "git",
@@ -31,13 +29,15 @@
   },
   "homepage": "https://github.com/Sobesednik/preact-animate-on-change#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "@babel/core": "^7.0.0-beta.39",
+    "babel-cli": "^7.0.0-beta.3",
+    "babel-core": "^7.0.0-0",
+    "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "7.0.0-beta.3",
+    "babel-preset-es2015": "7.0.0-beta.3",
     "babelify": "^8.0.0",
+    "browserify": "^15.2.0",
     "css-loader": "^0.28.9",
     "ecstatic": "^3.1.1",
     "jasmine-core": "^2.9.1",
@@ -49,11 +49,15 @@
     "preact": "^8.2.7",
     "preact-redux": "^2.0.3",
     "redux": "^3.7.2",
+    "spawncommand": "^1.1.0",
     "style-loader": "^0.20.1",
     "watchify": "^3.10.0",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
   },
   "peerDependencies": {
     "preact": "*"
-  }
+  },
+  "dependencies": {}
 }

@@ -1,8 +1,5 @@
-// Karma configuration
-// Generated on Sun Jan 03 2016 14:44:45 GMT+0100 (Vest-Europa (normaltid))
 module.exports = function (config) {
   config.set({
-    // base path that will be used to resolve all patterns (eg. files, exclude)
     browsers: ['ChromeHeadless'],
     basePath: '',
     frameworks: ['browserify', 'jasmine'],
@@ -22,6 +19,5 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     singleRun: true,
-    concurrency: 5
   })
 }
