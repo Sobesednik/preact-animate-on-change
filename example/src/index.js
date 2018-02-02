@@ -1,7 +1,7 @@
 import { h, render } from 'preact'
 import { createStore } from 'redux'
 import { connect, Provider } from 'preact-redux'
-import AnimateOnChange from '../index.js'
+import AnimateOnChange from '../..'
 import './style.css'
 
 const initialState = {

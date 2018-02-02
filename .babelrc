@@ -1,11 +1,14 @@
 {
 	"presets": [
-		["es2015", { "loose": true }]
+		["@babel/preset-env", {
+			"targets": {
+				"browsers": "> 2%"
+			}
+		}]
 	],
 	"plugins": [
 		["transform-react-jsx", {
 			"pragma": "h"
-		}],
-		"add-module-exports"
+		}]
 	]
 }
