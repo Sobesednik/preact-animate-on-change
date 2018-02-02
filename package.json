@@ -1,6 +1,6 @@
 {
   "name": "preact-animate-on-change",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Animate your components on state change",
   "main": "dist/index.js",
   "scripts": {
