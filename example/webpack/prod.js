@@ -1,13 +1,12 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { ProvidePlugin } = require('webpack')
 
 const dirName = resolve(__dirname, '../src')
 
 module.exports = {
   context: dirName,
-  entry: [
-    '.',
-  ],
+  entry: '.',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -41,6 +40,9 @@ module.exports = {
       title: 'Preact Animate on Change',
       favicon: '../html/favicon.ico',
       template: '../html/demo.html',
+    }),
+    new ProvidePlugin({
+      h: ['preact', 'h'],
     }),
   ],
 }

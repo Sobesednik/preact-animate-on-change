@@ -1,8 +1,8 @@
 /* eslint-env browser */
-import { h, render } from 'preact'
+import { render } from 'preact'
 import { createStore } from 'redux'
 import { connect, Provider } from 'preact-redux'
-import Animated from '../..'
+import AnimateOnChange from '../..'
 import './style.css'
 
 const initialState = {
@@ -31,12 +31,12 @@ setInterval(() => {
 
 const AppComponent = ({ diff, score }) =>
   <div className='App'>
-    <Animated
+    <AnimateOnChange
       baseClassName='Score'
       animationClassName='Score--bounce'
       animate={diff !== 0}>
       Score: {score}
-    </Animated>
+    </AnimateOnChange>
   </div>
 
 const App = connect(s => s)(AppComponent)

@@ -2,9 +2,7 @@ const { ProvidePlugin } = require('webpack')
 const { resolve } = require('path')
 
 module.exports = {
-  entry: [
-    './src',
-  ],
+  entry: './src',
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'bundle.js',
