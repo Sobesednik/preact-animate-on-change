@@ -6,17 +6,6 @@
 	"configurations": [
 		{
 			"type": "node",
-			"request": "launch",
-			"name": "Launch Program",
-			"program": "${workspaceRoot}/node_modules/.bin/karma",
-			"cwd": "${workspaceRoot}",
-			"args": [
-				"start",
-				"karma.conf-ci.js"
-			]
-		},
-		{
-			"type": "node",
 			"request": "attach",
 			"name": "Attach to Process",
 			"port": 5858

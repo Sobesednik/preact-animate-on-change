@@ -56,11 +56,24 @@ Also, [see the example folder](example).
 
 `animate {bool}` : Whether component should animate.
 
+## Require Source Code
+
+You can require the source file directly as it's part of the npm package, however
+you need to make sure to run it via `babel-loader`. This can be useful when
+debugging your applicated.
+
+```js
+import Animated from 'preact-animate-on-change/src'
+
+<Animated />
+```
+
 ## Develop
 
 ```sh
 yarn start
 ```
+
 Add tests in [test.js](test.js) and hack away.
 
 ## Known issues

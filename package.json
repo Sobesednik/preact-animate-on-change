@@ -7,10 +7,16 @@
     "build": "webpack --p",
     "postversion": "npm run build && git add dist && git commit --amend --no-edit",
     "postpublish": "git push && git push --tags",
-    "test": "karma start karma.conf-ci.js",
-    "watch": "webpack-dev-server --config example/webpack/dev.js",
-    "build-example": "webpack --config example/webpack/prod.js"
+    "test": "karma start karma.conf.js --single-run",
+    "t": "karma start karma.conf.js",
+    "start": "webpack-dev-server --config example/webpack/dev.js",
+    "build-example": "webpack --config example/webpack/prod.js --p",
+    "lint": "eslint . --ext js --ext jsx"
   },
+  "files": [
+    "dist/bundle.js",
+    "src/index.jsx"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sobesednik/preact-animate-on-change.git"
@@ -35,10 +41,13 @@
     "babel-core": "^7.0.0-0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-transform-react-jsx": "7.0.0-beta.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
     "babelify": "^8.0.0",
     "browserify": "^15.2.0",
     "css-loader": "^0.28.9",
     "ecstatic": "^3.1.1",
+    "eslint": "^4.0.0-rc.0",
+    "eslint-plugin-react": "^7.6.1",
     "html-webpack-plugin": "^2.30.1",
     "jasmine-core": "^2.9.1",
     "karma": "^2.0.0",
@@ -46,6 +55,8 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.1",
     "karma-mocha-reporter": "^2.2.5",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.9",
     "preact": "^8.2.7",
     "preact-redux": "^2.0.3",
     "redux": "^3.7.2",

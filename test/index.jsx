@@ -1,14 +1,13 @@
-/* eslint-env jasmine */
+/* eslint-env jasmine, browser */
+import { Component, render } from 'preact'
+import AnimateOnChange from '../src'
 
 if (typeof global.requestAnimationFrame !== 'function') {
   // polyfill requestAnimationFrame
-  global.requestAnimationFrame = function (callback) {
-    setTimeout(callback, 0);
-  };
+  global.requestAnimationFrame = (callback) => {
+    setTimeout(callback, 0)
+  }
 }
-
-import { h, Component, render } from 'preact'
-import AnimateOnChange from './index.js'
 
 const ANIMATION_TIME = 100
 const ANIMATION_SETTLE = 1000
@@ -34,74 +33,80 @@ style.innerHTML = `
 }`
 document.head.appendChild(style)
 
-const Animated = ({children}) => {
+const Animated = ({ children }) => {
   children = children || 'text'
   return <AnimateOnChange
     baseClassName='base'
     animationClassName='fade'
     animate={true}>
-      {children}
+    {children}
   </AnimateOnChange>
 }
 
 let pushThis
 class PushNewProps extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {}
     this.state.text = 'content'
     pushThis = this
   }
-  render () {
+  render() {
     return <Animated>{this.state.text}</Animated>
   }
 }
 
-describe('preact-animate-on-change', function () {
+describe('preact-animate-on-change', () => {
   let root
-  beforeEach(function () {
-    if (root) {
-      document.body.removeChild(root)
-    }
+  beforeEach(() => {
     root = document.createElement('div')
     root.id = 'root'
     document.body.appendChild(root)
   })
+  afterEach(() => {
+    if (root) {
+      document.body.removeChild(root)
+    }
+  })
 
-  it('renders to dom', function () {
+  it('renders to dom', () => {
     render(<Animated />, root)
     let elms = document.getElementsByClassName('base')
     expect(elms.length).toBe(1)
   })
 
-  it('animation class name is added on enter', function () {
+  it('animation class name is added on enter', () => {
     render(<Animated />, root)
     let animated = document.getElementsByClassName('fade')
     expect(animated.length).toBe(1)
   })
 
-  it('removes animation class', function (done) {
+  it('removes animation class', (done) => {
     render(<Animated />, root)
-    setTimeout(function () {
+    setTimeout(() => {
       let animated = document.getElementsByClassName('fade')
       expect(animated.length).toBe(0)
       done()
     }, ANIMATION_TIME + ANIMATION_SETTLE)
   })
 
-  it('adds animation class on props change', function (done) {
+  it('adds animation class on props change', (done) => {
     render(<PushNewProps />, root)
     let animated
-    setTimeout(function () {
+    setTimeout(() => {
       animated = document.getElementsByClassName('fade')
       expect(animated.length).toBe(0)
 
-      pushThis.setState({text: 'updated text'})
-      setTimeout(function () {
+      pushThis.setState({ text: 'updated text' })
+      setTimeout(() => {
         animated = document.getElementsByClassName('fade')
         expect(animated.length).toBe(1)
         done()
       }, 0.5 * ANIMATION_TIME)
     }, ANIMATION_TIME + ANIMATION_SETTLE)
+  })
+
+  it('throws an error', () => {
+    render(<Animated />)
   })
 })

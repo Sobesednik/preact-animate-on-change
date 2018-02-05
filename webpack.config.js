@@ -1,35 +1,43 @@
+const { ProvidePlugin } = require('webpack')
 const { resolve } = require('path')
 
 module.exports = {
-	context: resolve(__dirname, 'src'),
-	entry: [
-		'./index.js'
-	],
-	output: {
-		path: resolve(__dirname, 'dist'),
-		filename: 'bundle.js',
-		libraryTarget: 'commonjs2'
-	},
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-env'],
-					},
-				},
-			},
-			{
-				test: /\.css$/,
-				use: [
-					{ loader: "style-loader" },
-					{ loader: "css-loader" }
-				]
-			}
-		]
-	},
-	externals: ['preact']
+  entry: [
+    './src',
+  ],
+  output: {
+    path: resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    libraryTarget: 'commonjs2',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|dist)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+        ],
+      },
+    ],
+  },
+  externals: ['preact'],
+  plugins: [
+    new ProvidePlugin({
+      h: ['preact', 'h'],
+    }),
+  ],
 }

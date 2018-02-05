@@ -1,10 +1,10 @@
-import { h, Component } from 'preact'
+import { Component } from 'preact'
 
 const events = {
   start: ['animationstart', 'webkitAnimationStart', 'mozAnimationStart', 'oanimationstart', 'MSAnimationStart'],
   end: ['animationend', 'webkitAnimationEnd', 'mozAnimationEnd', 'oanimationend', 'MSAnimationEnd'],
   startRemoved: [],
-  endRemoved: []
+  endRemoved: [],
 }
 
 /**
@@ -27,7 +27,7 @@ export default class AnimateOnChange extends Component {
   }
 
   rootRef (ref) {
-    this.root = ref;
+    this.root = ref
   }
 
   componentDidMount () {
